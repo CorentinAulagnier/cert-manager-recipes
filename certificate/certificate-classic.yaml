@@ -1,0 +1,15 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: certificate-classic
+spec:
+  secretName: certificate-and-key-secret
+  duration: 24h
+  renewBefore: 12h
+  commonName: app1.com
+  dnsNames:	# alternative names
+  - app1.com
+  - app2.net
+  issuerRef:
+    name: issuer-name
+    kind: Issuer
