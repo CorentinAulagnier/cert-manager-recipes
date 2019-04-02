@@ -14,8 +14,8 @@ spec:
     - http01:
         ingressClass: nginx
       domains:
-      - foo.example.com
-      - bar.example.com
+      - app1.com
+      - app2.net
   issuerRef:
     name: issuer-name
     kind: Issuer
