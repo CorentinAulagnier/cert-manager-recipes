@@ -4,8 +4,6 @@ metadata:
   name: certificate-acme
 spec:
   secretName: certificate-and-key-secret
-  duration: 24h
-  renewBefore: 12h
   dnsNames:
   - app1.com
   - app2.net
