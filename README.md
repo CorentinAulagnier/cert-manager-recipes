@@ -4,12 +4,14 @@ Recipes for cert-manager ressources
 ## Note
 > CA = certificate authority
 
+# Ressources
+
 ## Issuer
 An Issuer is a way to sign a certificat. This Issuer is only accessible in one namespace. If you want an Issuer accessible from the entire cluster, you must use a ClusterIssuer.
 You can choose to :
 - self-sign : the keys present in the certificate are the same as those used to sign it (not recommended)
 - use the issuer as a CA : the given key will sign all certificates
-- forward the request to another CA : you must give informations about this CA (recommended)
+- forward the request to another CA : you must give informations about this external CA (recommended)
 
 ## ClusterIssuer
 A ClusterIssuer is an Issuer accessible from all cluster's namespaces.
@@ -39,8 +41,10 @@ metadata:
   name: my-issuer
 spec:
   ca:
-    secretName: issuer-keys 
+    secretName: issuer-keys #Key used to sign certificates
 ```
+
+# Links
 
 ## Cert-manager repo
 https://github.com/jetstack/cert-manager
