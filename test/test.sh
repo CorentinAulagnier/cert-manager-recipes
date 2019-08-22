@@ -42,7 +42,7 @@ deleteRessources()
 
 	kubectl delete ingress ingress-selfsigned-issuer --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
 	kubectl delete ingress ingress-issuer --namespace=${TEST_NAMESPACE}			>/dev/null 2>&1
-	kubectl delete ingress ingressingress-clusterissuer --namespace=${TEST_NAMESPACE}	>/dev/null 2>&1
+	kubectl delete ingress ingress-clusterissuer --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
 
 }
 
@@ -150,23 +150,4 @@ kubectl get secret certificate-cluster-ca-secret ingress-clusterissuer-secret  -
 echo
 
 deleteRessources
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
