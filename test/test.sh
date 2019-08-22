@@ -9,7 +9,7 @@ COMMON_NAME=COMMON_NAME_DEFAULT
 
 SLEEP=2
 
-deleteRessources() 
+deleteRessources
 
 
 #####
@@ -103,13 +103,14 @@ echo
 echo End test
 echo
 
-deleteRessources() 
+deleteRessources
 
 #####
 # Removing CA key and cert file, secrets, certificates and issuers
 #####
 deleteRessources() 
-{	rm ca.key ca.crt									> /dev/null
+{	echo delete test ressources
+	rm ca.key ca.crt									> /dev/null
 
 	kubectl delete secret ca-keys-secret --namespace=${TEST_NAMESPACE} 			> /dev/null
 	kubectl delete secret cluster-ca-keys-secret --namespace=cert-manager 			> /dev/null
