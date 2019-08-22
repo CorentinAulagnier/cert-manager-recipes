@@ -68,7 +68,7 @@ kubectl create -f ${INGRESS_FOLDER}ingress-selfsigned.yaml --namespace=${TEST_NA
 
 echo
 echo Verification
-echo \"certificate-selfsigned\" and \"ingress-selfsigned-issuer-secret\" secret must appear
+echo \"certificate-selfsigned-secret\" and \"ingress-selfsigned-issuer-secret\" secret must appear
 echo
 
 sleep ${SLEEP}
@@ -85,10 +85,10 @@ echo Classic issuer test
 echo
 
 # Generate a CA private key
-openssl genrsa -out ca.key 2048
+openssl genrsa -out ca.key 2048	>/dev/null 2>&1
 
 # Create a self signed Certificate, valid for 10yrs with the 'signing' option set
-openssl req -x509 -new -nodes -key ca.key -subj "/CN=${COMMON_NAME}" -days 3650 -reqexts v3_req -extensions v3_ca -out ca.crt
+openssl req -x509 -new -nodes -key ca.key -subj "/CN=${COMMON_NAME}" -days 3650 -reqexts v3_req -extensions v3_ca -out ca.crt	>/dev/null 2>&1
 
 # Create a secret with the self signed Certificate, and the CA private key
 kubectl create secret tls ca-keys-secret --cert=ca.crt --key=ca.key --namespace=${TEST_NAMESPACE}
@@ -121,10 +121,10 @@ echo Cluster issuer test
 echo
 
 # Generate a cluster CA private key
-openssl genrsa -out ca.key 2048
+openssl genrsa -out ca.key 2048	>/dev/null 2>&1
 
 # Create a self signed Certificate, valid for 10yrs with the 'signing' option set
-openssl req -x509 -new -nodes -key ca.key -subj "/CN=${COMMON_NAME}" -days 3650 -reqexts v3_req -extensions v3_ca -out ca.crt
+openssl req -x509 -new -nodes -key ca.key -subj "/CN=${COMMON_NAME}" -days 3650 -reqexts v3_req -extensions v3_ca -out ca.crt	>/dev/null 2>&1
 
 # Create a secret with the self signed Certificate, and the CA private key
 # The secret must be in the cert-manager namespace
