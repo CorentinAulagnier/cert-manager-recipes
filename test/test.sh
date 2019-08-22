@@ -16,9 +16,14 @@ kubectl delete issuer issuer-selfsigned --namespace=${TEST_NAMESPACE}
 kubectl delete issuer issuer-ca --namespace=${TEST_NAMESPACE}
 kubectl delete clusterissuer clusterissuer-ca
 
+kubectl delete certificate certificate-selfsigned --namespace=${TEST_NAMESPACE}
+kubectl delete certificate certificate-ca --namespace=${TEST_NAMESPACE}
+kubectl delete certificate certificate-cluster-ca --namespace=${TEST_NAMESPACE}
+
 kubectl delete secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE}
-kubectl delete secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}
 kubectl delete secret certificate-ca-secret --namespace=${TEST_NAMESPACE}
+kubectl delete secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}
+
 
 echo
 echo Self signed issuer test
