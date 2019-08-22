@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    # add an annotation indicating the issuer to use.
+    # The Issuer must be in the same namespace as the Ingress resource
+    certmanager.k8s.io/issuer: issuer-ca
+  name: ingress-issuer
+  namespace: cert-manager-test
+spec:
+  rules:
+  - host: myingress.com
+    http:
+      paths:
+      - backend:
+          serviceName: myservice
+          servicePort: 80
+        path: /
+  tls: # < placing a host in the TLS config will indicate a cert should be created
+  - hosts:
+    - myingress.com
+    secretName: ingress-issuer-secret # < cert-manager will store the created certificate in this secret.
+
