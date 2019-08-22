@@ -9,7 +9,7 @@ COMMON_NAME=COMMON_NAME_DEFAULT
 
 SLEEP=2
 
-CERT_FOLDER="./certificate/"
+CERTIFICATE_FOLDER="./certificate/"
 ISSUER_FOLDER="./issuer/"
 INGRESS_FOLDER="./ingress/"
 
@@ -68,11 +68,11 @@ kubectl create -f ${INGRESS_FOLDER}ingress-selfsigned.yaml --namespace=${TEST_NA
 
 echo
 echo Verification
-echo certificate-selfsigned and ingress-selfsigned-issuer-secret secret must appear
+echo "certificate-selfsigned" and "ingress-selfsigned-issuer-secret" secret must appear
 echo
 
 sleep ${SLEEP}
-kubectl get secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE}
+kubectl get secret certificate-selfsigned-secret,ingress-selfsigned-issuer-secret --namespace=${TEST_NAMESPACE}
 
 
 #####
@@ -105,11 +105,11 @@ kubectl create -f ${INGRESS_FOLDER}ingress-issuer.yaml --namespace=${TEST_NAMESP
 
 echo
 echo Verification
-echo certificate-ca-secret and ingress-issuer-secret secret must appear
+echo "certificate-ca-secret" and "ingress-issuer-secret" secret must appear
 echo
 
 sleep ${SLEEP}
-kubectl get secret certificate-ca-secret --namespace=${TEST_NAMESPACE}
+kubectl get secret certificate-ca-secret,ingress-issuer-secret --namespace=${TEST_NAMESPACE}
 
 #####
 # Cluster issuer test
@@ -142,11 +142,11 @@ kubectl create -f ${INGRESS_FOLDER}ingress-clusterissuer.yaml --namespace=${TEST
 
 echo
 echo Verification
-echo certificate-cluster-ca-secret and ingress-clusterissuer-secret secret must appear
+echo "certificate-cluster-ca-secret" and "ingress-clusterissuer-secret" secret must appear
 echo
 
 sleep ${SLEEP}
-kubectl get secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}
+kubectl get secret certificate-cluster-ca-secret,ingress-clusterissuer-secret  --namespace=${TEST_NAMESPACE}
 echo
 
 deleteRessources
