@@ -94,6 +94,7 @@ kubectl get secret certificate-ca-secret --namespace=${TEST_NAMESPACE}
 # Cluster issuer test
 #####
 
+echo
 echo "###############"
 echo Cluster issuer test
 echo
