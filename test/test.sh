@@ -14,22 +14,22 @@ SLEEP=2
 #####
 deleteRessources() 
 {
-	rm ca.key ca.crt									2>&1 /dev/null
+	rm ca.key ca.crt									>/dev/null 2>&1
 
-	kubectl delete secret ca-keys-secret --namespace=${TEST_NAMESPACE} 			2>&1 /dev/null
-	kubectl delete secret cluster-ca-keys-secret --namespace=cert-manager 			2>&1 /dev/null
+	kubectl delete secret ca-keys-secret --namespace=${TEST_NAMESPACE} 			>/dev/null 2>&1
+	kubectl delete secret cluster-ca-keys-secret --namespace=cert-manager 			>/dev/null 2>&1
 
-	kubectl delete issuer issuer-selfsigned --namespace=${TEST_NAMESPACE} 			2>&1 /dev/null
-	kubectl delete issuer issuer-ca --namespace=${TEST_NAMESPACE} 				2>&1 /dev/null
-	kubectl delete clusterissuer clusterissuer-ca						2>&1 /dev/null
+	kubectl delete issuer issuer-selfsigned --namespace=${TEST_NAMESPACE} 			>/dev/null 2>&1
+	kubectl delete issuer issuer-ca --namespace=${TEST_NAMESPACE} 				>/dev/null 2>&1
+	kubectl delete clusterissuer clusterissuer-ca						>/dev/null 2>&1
 
-	kubectl delete certificate certificate-selfsigned --namespace=${TEST_NAMESPACE} 	2>&1 /dev/null
-	kubectl delete certificate certificate-ca --namespace=${TEST_NAMESPACE} 		2>&1 /dev/null
-	kubectl delete certificate certificate-cluster-ca --namespace=${TEST_NAMESPACE}		2>&1 /dev/null
+	kubectl delete certificate certificate-selfsigned --namespace=${TEST_NAMESPACE} 	>/dev/null 2>&1
+	kubectl delete certificate certificate-ca --namespace=${TEST_NAMESPACE} 		>/dev/null 2>&1
+	kubectl delete certificate certificate-cluster-ca --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
 
-	kubectl delete secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE} 	2>&1 /dev/null
-	kubectl delete secret certificate-ca-secret --namespace=${TEST_NAMESPACE}		2>&1 /dev/null
-	kubectl delete secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}	2>&1 /dev/null
+	kubectl delete secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE} 	>/dev/null 2>&1
+	kubectl delete secret certificate-ca-secret --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
+	kubectl delete secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}	>/dev/null 2>&1
 }
 
 deleteRessources
