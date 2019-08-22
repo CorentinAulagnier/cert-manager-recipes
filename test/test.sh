@@ -75,6 +75,7 @@ openssl req -x509 -new -nodes -key ca.key -subj "/CN=${COMMON_NAME}" -days 3650 
 
 # Create a secret with the self signed Certificate, and the CA private key
 kubectl create secret tls ca-keys-secret --cert=ca.crt --key=ca.key --namespace=${TEST_NAMESPACE}
+echo
 
 # Create an issuer using the previous secret
 kubectl create -f issuer-ca.yaml --namespace=${TEST_NAMESPACE}
@@ -106,6 +107,7 @@ openssl req -x509 -new -nodes -key ca.key -subj "/CN=${COMMON_NAME}" -days 3650 
 # Create a secret with the self signed Certificate, and the CA private key
 # The secret must be in the cert-manager namespace
 kubectl create secret tls cluster-ca-keys-secret --cert=ca.crt --key=ca.key --namespace=cert-manager
+echo
 
 # Create a cluster issuer using the previous secret
 kubectl create -f clusterIssuer-ca.yaml
@@ -113,7 +115,6 @@ kubectl create -f clusterIssuer-ca.yaml
 # Create a certificate using the classic issuer
 kubectl create -f certificate-cluster-ca.yaml --namespace=${TEST_NAMESPACE}
 
-echo
 echo
 echo Verification
 echo
