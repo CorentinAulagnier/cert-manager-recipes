@@ -9,8 +9,6 @@ COMMON_NAME=COMMON_NAME_DEFAULT
 
 SLEEP=2
 
-deleteRessources
-
 #####
 # Removing CA key and cert file, secrets, certificates and issuers
 #####
@@ -34,6 +32,7 @@ deleteRessources()
 	kubectl delete secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}	> /dev/null
 }
 
+deleteRessources
 
 #####
 # Self signed issuer test
