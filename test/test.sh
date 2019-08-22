@@ -12,6 +12,7 @@ SLEEP=2
 #####
 # Removing CA key and cert file, secrets, certificates and issuers
 #####
+
 deleteRessources() 
 {
 	rm ca.key ca.crt									>/dev/null 2>&1
@@ -38,6 +39,7 @@ deleteRessources
 # Self signed issuer test
 #####
 
+echo
 echo "###############"
 echo Self signed issuer test
 echo
@@ -53,7 +55,6 @@ echo Verification
 echo
 
 sleep ${SLEEP}
-
 kubectl get secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE}
 
 
@@ -61,6 +62,7 @@ kubectl get secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE}
 # Classic issuer test
 #####
 
+echo
 echo "###############"
 echo Classic issuer test
 echo
@@ -85,9 +87,7 @@ echo Verification
 echo
 
 sleep ${SLEEP}
-
 kubectl get secret certificate-ca-secret --namespace=${TEST_NAMESPACE}
-
 
 #####
 # Cluster issuer test
@@ -114,12 +114,13 @@ kubectl create -f clusterIssuer-ca.yaml
 kubectl create -f certificate-cluster-ca.yaml --namespace=${TEST_NAMESPACE}
 
 echo
+echo
 echo Verification
 echo
 
 sleep ${SLEEP}
-
 kubectl get secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}
+echo
 
 deleteRessources
 
