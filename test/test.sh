@@ -13,23 +13,23 @@ SLEEP=2
 # Removing CA key and cert file, secrets, certificates and issuers
 #####
 deleteRessources() 
-{	echo delete test ressources
-	rm ca.key ca.crt									> /dev/null
+{
+	rm ca.key ca.crt									2>&1 /dev/null
 
-	kubectl delete secret ca-keys-secret --namespace=${TEST_NAMESPACE} 			> /dev/null
-	kubectl delete secret cluster-ca-keys-secret --namespace=cert-manager 			> /dev/null
+	kubectl delete secret ca-keys-secret --namespace=${TEST_NAMESPACE} 			2>&1 /dev/null
+	kubectl delete secret cluster-ca-keys-secret --namespace=cert-manager 			2>&1 /dev/null
 
-	kubectl delete issuer issuer-selfsigned --namespace=${TEST_NAMESPACE} 			> /dev/null
-	kubectl delete issuer issuer-ca --namespace=${TEST_NAMESPACE} 				> /dev/null
-	kubectl delete clusterissuer clusterissuer-ca						> /dev/null
+	kubectl delete issuer issuer-selfsigned --namespace=${TEST_NAMESPACE} 			2>&1 /dev/null
+	kubectl delete issuer issuer-ca --namespace=${TEST_NAMESPACE} 				2>&1 /dev/null
+	kubectl delete clusterissuer clusterissuer-ca						2>&1 /dev/null
 
-	kubectl delete certificate certificate-selfsigned --namespace=${TEST_NAMESPACE} 	> /dev/null
-	kubectl delete certificate certificate-ca --namespace=${TEST_NAMESPACE} 		> /dev/null
-	kubectl delete certificate certificate-cluster-ca --namespace=${TEST_NAMESPACE}		> /dev/null
+	kubectl delete certificate certificate-selfsigned --namespace=${TEST_NAMESPACE} 	2>&1 /dev/null
+	kubectl delete certificate certificate-ca --namespace=${TEST_NAMESPACE} 		2>&1 /dev/null
+	kubectl delete certificate certificate-cluster-ca --namespace=${TEST_NAMESPACE}		2>&1 /dev/null
 
-	kubectl delete secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE} 	> /dev/null
-	kubectl delete secret certificate-ca-secret --namespace=${TEST_NAMESPACE}		> /dev/null
-	kubectl delete secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}	> /dev/null
+	kubectl delete secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE} 	2>&1 /dev/null
+	kubectl delete secret certificate-ca-secret --namespace=${TEST_NAMESPACE}		2>&1 /dev/null
+	kubectl delete secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}	2>&1 /dev/null
 }
 
 deleteRessources
@@ -38,7 +38,7 @@ deleteRessources
 # Self signed issuer test
 #####
 
-echo ###############
+echo "###############"
 echo Self signed issuer test
 echo
 
@@ -61,7 +61,7 @@ kubectl get secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE}
 # Classic issuer test
 #####
 
-echo ###############
+echo "###############"
 echo Classic issuer test
 echo
 
@@ -93,7 +93,7 @@ kubectl get secret certificate-ca-secret --namespace=${TEST_NAMESPACE}
 # Cluster issuer test
 #####
 
-echo ###############
+echo "###############"
 echo Cluster issuer test
 echo
 
@@ -120,10 +120,6 @@ echo
 sleep ${SLEEP}
 
 kubectl get secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}
-
-echo
-echo End test
-echo
 
 deleteRessources
 
