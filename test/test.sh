@@ -6,23 +6,25 @@ TEST_NAMESPACE=cert-manager-test
 
 COMMON_NAME=COMMON_NAME_DEFAULT
 
+SLEEP=2
+
 #####
 # Removing secrets, certificates and issuers
 #####
-kubectl delete secret ca-keys-secret --namespace=${TEST_NAMESPACE}
-kubectl delete secret ca-keys-secret --namespace=cert-manager
+kubectl delete secret ca-keys-secret --namespace=${TEST_NAMESPACE} 			> /dev/null
+kubectl delete secret ca-keys-secret --namespace=cert-manager 				> /dev/null
 
-kubectl delete issuer issuer-selfsigned --namespace=${TEST_NAMESPACE}
-kubectl delete issuer issuer-ca --namespace=${TEST_NAMESPACE}
+kubectl delete issuer issuer-selfsigned --namespace=${TEST_NAMESPACE} 			> /dev/null
+kubectl delete issuer issuer-ca --namespace=${TEST_NAMESPACE} 				> /dev/null
 kubectl delete clusterissuer clusterissuer-ca
 
-kubectl delete certificate certificate-selfsigned --namespace=${TEST_NAMESPACE}
-kubectl delete certificate certificate-ca --namespace=${TEST_NAMESPACE}
-kubectl delete certificate certificate-cluster-ca --namespace=${TEST_NAMESPACE}
+kubectl delete certificate certificate-selfsigned --namespace=${TEST_NAMESPACE} 	> /dev/null
+kubectl delete certificate certificate-ca --namespace=${TEST_NAMESPACE} 		> /dev/null
+kubectl delete certificate certificate-cluster-ca --namespace=${TEST_NAMESPACE} 	> /dev/null
 
-kubectl delete secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE}
-kubectl delete secret certificate-ca-secret --namespace=${TEST_NAMESPACE}
-kubectl delete secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}
+kubectl delete secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE} 	> /dev/null
+kubectl delete secret certificate-ca-secret --namespace=${TEST_NAMESPACE} 		> /dev/null
+kubectl delete secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE} 	> /dev/null
 
 
 echo
@@ -39,7 +41,12 @@ kubectl create -f issuer-selfsigned.yaml --namespace=${TEST_NAMESPACE}
 # Create a certificate using the self signed issuer
 kubectl create -f certificate-selfsigned.yaml --namespace=${TEST_NAMESPACE}
 
-# Verification
+echo
+echo Verification
+echo
+
+sleep ${SLEEP}
+
 kubectl get secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE}
 
 echo
@@ -65,7 +72,12 @@ kubectl create -f issuer-ca.yaml --namespace=${TEST_NAMESPACE}
 # Create a certificate using the classic issuer
 kubectl create -f certificate-ca.yaml --namespace=${TEST_NAMESPACE}
 
-# Verification
+echo
+echo Verification
+echo
+
+sleep ${SLEEP}
+
 kubectl get secret certificate-ca-secret --namespace=${TEST_NAMESPACE}
 
 echo
@@ -92,7 +104,12 @@ kubectl create -f clusterIssuer-ca.yaml
 # Create a certificate using the classic issuer
 kubectl create -f certificate-cluster-ca.yaml --namespace=${TEST_NAMESPACE}
 
-# Verification
+echo
+echo Verification
+echo
+
+sleep ${SLEEP}
+
 kubectl get secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}
 
 echo
