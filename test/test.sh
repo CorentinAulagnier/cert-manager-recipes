@@ -12,9 +12,9 @@ COMMON_NAME=COMMON_NAME_DEFAULT
 kubectl delete secret ca-keys-secret --namespace=${TEST_NAMESPACE}
 kubectl delete secret ca-keys-secret --namespace=cert-manager
 
-kubectl delete issuer-selfsigned --namespace=${TEST_NAMESPACE}
-kubectl delete issuer-ca --namespace=${TEST_NAMESPACE}
-kubectl delete clusterissuer-ca
+kubectl delete issuer issuer-selfsigned --namespace=${TEST_NAMESPACE}
+kubectl delete issuer issuer-ca --namespace=${TEST_NAMESPACE}
+kubectl delete clusterissuer clusterissuer-ca
 
 kubectl delete secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE}
 kubectl delete secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}
