@@ -48,6 +48,9 @@ deleteRessources()
 
 deleteRessources
 
+# Test namespace creation
+kubectl create ns ${TEST_NAMESPACE}	>/dev/null 2>&1
+
 #####
 # Self signed issuer test
 #####
