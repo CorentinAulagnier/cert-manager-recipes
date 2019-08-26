@@ -9,12 +9,16 @@ COMMON_NAME=COMMON_NAME_DEFAULT
 
 SLEEP=5
 
-CERTIFICATE_FOLDER="./certificate/"
-ISSUER_FOLDER="./issuer/"
-INGRESS_FOLDER="./ingress/"
+# Absolute path to this script, e.g. /home/user/bin/foo.sh
+SCRIPT=$(readlink -f "$0")
+# Absolute path this script is in, thus /home/user/bin
+SCRIPTPATH=$(dirname "$SCRIPT")
+echo $SCRIPTPATH
 
-pwd > PWD
-echo ${PWD}
+CERTIFICATE_FOLDER=$SCRIPTPATH"./certificate/"
+ISSUER_FOLDER=$SCRIPTPATH"./issuer/"
+INGRESS_FOLDER=$SCRIPTPATH"./ingress/"
+
 #####
 # Removing CA key and cert file, secrets, certificates and issuers
 #####
