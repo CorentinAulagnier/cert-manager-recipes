@@ -54,7 +54,7 @@ deleteRessources
 
 echo
 echo "###############"
-echo Self signed issuer test
+echo "# Self signed issuer test"
 echo
 
 # Create a self signed issuer
@@ -67,8 +67,8 @@ kubectl create -f ${CERTIFICATE_FOLDER}certificate-selfsigned.yaml --namespace=$
 kubectl create -f ${INGRESS_FOLDER}ingress-selfsigned.yaml --namespace=${TEST_NAMESPACE}
 
 echo
-echo Verification
-echo \"certificate-selfsigned-secret\" and \"ingress-selfsigned-issuer-secret\" secret must appear
+echo "# Verification"
+echo \"certificate-selfsigned-secret\" and \"ingress-selfsigned-issuer-secret\" secrets must appear
 echo
 
 sleep ${SLEEP}
@@ -81,7 +81,7 @@ kubectl get secret certificate-selfsigned-secret ingress-selfsigned-issuer-secre
 
 echo
 echo "###############"
-echo Classic issuer test
+echo "# Classic issuer test"
 echo
 
 # Generate a CA private key
@@ -104,8 +104,8 @@ kubectl create -f ${CERTIFICATE_FOLDER}certificate-ca.yaml --namespace=${TEST_NA
 kubectl create -f ${INGRESS_FOLDER}ingress-issuer.yaml --namespace=${TEST_NAMESPACE}
 
 echo
-echo Verification
-echo \"certificate-ca-secret\" and \"ingress-issuer-secret\" secret must appear
+echo "# Verification"
+echo \"certificate-ca-secret\" and \"ingress-issuer-secret\" secrets must appear
 echo
 
 sleep ${SLEEP}
@@ -117,7 +117,7 @@ kubectl get secret certificate-ca-secret ingress-issuer-secret --namespace=${TES
 
 echo
 echo "###############"
-echo Cluster issuer test
+echo "# Cluster issuer test"
 echo
 
 # Generate a cluster CA private key
@@ -141,8 +141,8 @@ kubectl create -f ${CERTIFICATE_FOLDER}certificate-cluster-ca.yaml --namespace=$
 kubectl create -f ${INGRESS_FOLDER}ingress-clusterissuer.yaml --namespace=${TEST_NAMESPACE}
 
 echo
-echo Verification
-echo \"certificate-cluster-ca-secret\" and \"ingress-clusterissuer-secret\" secret must appear
+echo "# Verification"
+echo \"certificate-cluster-ca-secret\" and \"ingress-clusterissuer-secret\" secrets must appear
 echo
 
 sleep ${SLEEP}
