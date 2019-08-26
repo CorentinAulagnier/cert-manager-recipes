@@ -7,7 +7,7 @@ TEST_NAMESPACE=cert-manager-test
 
 COMMON_NAME=COMMON_NAME_DEFAULT
 
-SLEEP=2
+SLEEP=5
 
 CERTIFICATE_FOLDER="./certificate/"
 ISSUER_FOLDER="./issuer/"
@@ -32,6 +32,10 @@ deleteRessources()
 	kubectl delete certificate certificate-ca --namespace=${TEST_NAMESPACE} 		>/dev/null 2>&1
 	kubectl delete certificate certificate-cluster-ca --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
 
+	kubectl delete ingress ingress-selfsigned-issuer --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
+	kubectl delete ingress ingress-issuer --namespace=${TEST_NAMESPACE}			>/dev/null 2>&1
+	kubectl delete ingress ingress-clusterissuer --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
+
 	kubectl delete secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE} 	>/dev/null 2>&1
 	kubectl delete secret certificate-ca-secret --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
 	kubectl delete secret certificate-cluster-ca-secret --namespace=${TEST_NAMESPACE}	>/dev/null 2>&1
@@ -39,10 +43,6 @@ deleteRessources()
 	kubectl delete secret ingress-selfsigned-issuer-secret --namespace=${TEST_NAMESPACE}	>/dev/null 2>&1
 	kubectl delete secret ingress-issuer-secret --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
 	kubectl delete secret ingress-clusterissuer-secret --namespace=${TEST_NAMESPACE}	>/dev/null 2>&1
-
-	kubectl delete ingress ingress-selfsigned-issuer --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
-	kubectl delete ingress ingress-issuer --namespace=${TEST_NAMESPACE}			>/dev/null 2>&1
-	kubectl delete ingress ingress-clusterissuer --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
 
 }
 
