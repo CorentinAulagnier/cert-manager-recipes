@@ -15,9 +15,9 @@ SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
 echo $SCRIPTPATH
 
-CERTIFICATE_FOLDER=$SCRIPTPATH"./certificate/"
-ISSUER_FOLDER=$SCRIPTPATH"./issuer/"
-INGRESS_FOLDER=$SCRIPTPATH"./ingress/"
+CERTIFICATE_FOLDER=$SCRIPTPATH"certificate/"
+ISSUER_FOLDER=$SCRIPTPATH"issuer/"
+INGRESS_FOLDER=$SCRIPTPATH"ingress/"
 
 #####
 # Removing CA key and cert file, secrets, certificates and issuers
