@@ -31,15 +31,15 @@ deleteRessources()
 
 	kubectl delete issuer -f ${ISSUER_FOLDER}issuer-selfsigned.yaml --namespace=${TEST_NAMESPACE} 			>/dev/null 2>&1
 	kubectl delete issuer -f ${ISSUER_FOLDER}issuer-ca.yaml --namespace=${TEST_NAMESPACE} 				>/dev/null 2>&1
-	kubectl delete clusterissuer ${ISSUER_FOLDER}clusterIssuer-ca.yaml						>/dev/null 2>&1
+	kubectl delete clusterissuer -f ${ISSUER_FOLDER}clusterIssuer-ca.yaml						>/dev/null 2>&1
 
 	kubectl delete certificate -f ${CERTIFICATE_FOLDER}certificate-selfsigned.yaml --namespace=${TEST_NAMESPACE} 	>/dev/null 2>&1
 	kubectl delete certificate -f ${CERTIFICATE_FOLDER}certificate-ca.yaml --namespace=${TEST_NAMESPACE} 		>/dev/null 2>&1
-	kubectl delete certificate ${CERTIFICATE_FOLDER}certificate-cluster-ca.yaml --namespace=${TEST_NAMESPACE}	>/dev/null 2>&1
+	kubectl delete certificate -f ${CERTIFICATE_FOLDER}certificate-cluster-ca.yaml --namespace=${TEST_NAMESPACE}	>/dev/null 2>&1
 
 	kubectl delete ingress -f ${INGRESS_FOLDER}ingress-selfsigned.yaml --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
 	kubectl delete ingress -f ${INGRESS_FOLDER}ingress-issuer.yaml --namespace=${TEST_NAMESPACE}			>/dev/null 2>&1
-	kubectl delete ingress ${INGRESS_FOLDER}ingress-clusterissuer.yaml --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
+	kubectl delete ingress -f ${INGRESS_FOLDER}ingress-clusterissuer.yaml --namespace=${TEST_NAMESPACE}		>/dev/null 2>&1
 
 	kubectl delete secret certificate-selfsigned-secret --namespace=${TEST_NAMESPACE} 				>/dev/null 2>&1
 	kubectl delete secret certificate-ca-secret --namespace=${TEST_NAMESPACE}					>/dev/null 2>&1
