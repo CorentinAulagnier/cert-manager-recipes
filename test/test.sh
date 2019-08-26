@@ -13,7 +13,7 @@ CERTIFICATE_FOLDER="./certificate/"
 ISSUER_FOLDER="./issuer/"
 INGRESS_FOLDER="./ingress/"
 
-PWD=pwd
+pwd > PWD
 echo ${PWD}
 #####
 # Removing CA key and cert file, secrets, certificates and issuers
